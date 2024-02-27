@@ -1,0 +1,51 @@
+{
+  "name": "@workspaces/root",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "packages/**",
+    "global/*",
+    "global/**"
+  ],
+  "scripts": {
+    "lint": "eslint src --no-inline-config --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "npm run lint -- --fix",
+    "lint:css": "stylelint **/*.css --aei --color",
+    "lint-staged": "lint-staged && tsc",
+    "pre:commit": "npx lerna exec --scope @packages/web -- npm run build && npx lerna exec --scope @packages/web -- npm run build",
+    "server:dev": "npx lerna exec --scope @packages/server -- npm run dev",
+    "server:build": "npx lerna exec --scope @packages/server -- npm run build",
+    "server:start": "npx lerna exec --scope @packages/server -- npm run start",
+    "web:dev": "npx lerna exec --scope @packages/web -- npm run dev",
+    "web:build": "npx lerna exec --scope @packages/web -- npm run build",
+    "web:start": "npx lerna exec --scope @packages/web -- npm run start",
+    "dev": "concurrently \"npm run server:dev\" \"npm run web:dev\"",
+    "build": "echo \"[ BUILDING GLOBAL PACKAGES ]\" && npm run global:build && echo \"[ BUILDING SERVER ]\" && npm run server:build && echo \"[ BUILDING WEB ]\" && npm run web:build",
+    "start": "concurrently \"npm run server:dev\" \"npm run web:start\"",
+    "global:build": "npx lerna exec --scope @global/* -- npm run build"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^18.x",
+    "@commitlint/config-conventional": "^18.x",
+    "@commitlint/prompt-cli": "^18.x",
+    "@commitlint/types": "^18.x",
+    "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "9.0.0",
+    "eslint-plugin-import": "^2.x",
+    "eslint-plugin-jsx-a11y": "^6.x",
+    "eslint-plugin-prettier": "5.0.1",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.x",
+    "eslint-plugin-react-refresh": "^0.x",
+    "husky": "^9.x",
+    "lerna": "^8.1.2",
+    "lint-staged": "^15.x",
+    "prettier": "3.1.0",
+    "vite-plugin-pwa": "^0.19.0"
+  },
+  "dependencies": {
+    "react-twitter-embed": "^4.0.4"
+  }
+}

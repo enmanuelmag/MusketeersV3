@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <title>Streamfy</title>
+
+    <meta
+      name="description"
+      content="Streamfy is a web app to help streamers to make activities more easily and fun for their audience."
+    />
+    <meta name="theme-color" content="#845EF7" />
+
+    <link rel="icon" type="image/svg+xml" href="/icons/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/webp" href="/favicon.webp" />
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+
+    <script type="module">
+      /* disables react devtools */
+      if (!window.location.port && typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === 'object') {
+        window.__REACT_DEVTOOLS_GLOBAL_HOOK__.inject = function () {}
+      }
+    </script>
+  </body>
+</html>
